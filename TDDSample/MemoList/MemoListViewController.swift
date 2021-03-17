@@ -7,6 +7,21 @@
 
 import UIKit
 
+class Navigation: UINavigationController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initializeViewController()
+    }
+    
+    private func initializeViewController() {
+        let memoListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoListViewController") as! MemoListViewController
+        memoListViewController.initialize(viewModel: MemoListViewModel(memoService: MemoService.shared),
+                                          navigator: MemoListNavigator(navigation: self))
+        setViewControllers([memoListViewController], animated: true)
+    }
+}
+
 class MemoListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
@@ -14,22 +29,21 @@ class MemoListViewController: UIViewController {
         didSet { self.tableView.reloadData() }
     }
     
-    private var viewModel: MemoListViewModel!
-    private var navigator: MemoListNavigator!
+    private var viewModel: MemoListViewModelType!
+    private var navigator: MemoListNavigatorProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialize()
         viewModel.delegate = self
     }
     
-    @IBAction private func addMemo(_ sender: UIBarButtonItem) {
+    @IBAction func addMemo(_ sender: UIBarButtonItem) {
         self.viewModel.action(.didTapAddMemo)
     }
     
-    func initialize() {
-        viewModel = MemoListViewModel(memoService: MemoService.shared)
-        navigator = MemoListNavigator(navigation: navigationController!)
+    func initialize(viewModel: MemoListViewModelType, navigator: MemoListNavigatorProtocol) {
+        self.viewModel = viewModel
+        self.navigator = navigator
     }
     
     override func viewWillAppear(_ animated: Bool) {

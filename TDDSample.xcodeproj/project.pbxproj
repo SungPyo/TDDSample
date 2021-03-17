@@ -19,12 +19,13 @@
 		593FCFA52600CACF003E46FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 593FCFA32600CACF003E46FB /* Main.storyboard */; };
 		593FCFA72600CAD0003E46FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 593FCFA62600CAD0003E46FB /* Assets.xcassets */; };
 		593FCFAA2600CAD0003E46FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 593FCFA82600CAD0003E46FB /* LaunchScreen.storyboard */; };
-		593FCFB52600CAD0003E46FB /* TDDSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FCFB42600CAD0003E46FB /* TDDSampleTests.swift */; };
 		593FCFD82600DA43003E46FB /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FCFD72600DA43003E46FB /* MemoViewController.swift */; };
 		593FCFDE2600DC13003E46FB /* MemoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FCFDD2600DC13003E46FB /* MemoListViewModel.swift */; };
 		593FCFE42600DC28003E46FB /* MemoListNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FCFE32600DC28003E46FB /* MemoListNavigator.swift */; };
 		593FCFEE2600DCE4003E46FB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FCFED2600DCE4003E46FB /* Model.swift */; };
 		593FCFF42600DD00003E46FB /* Model.Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593FCFF32600DD00003E46FB /* Model.Memo.swift */; };
+		59CA3D222602426800F04C35 /* MemoListViewNavigatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CA3D212602426800F04C35 /* MemoListViewNavigatorTests.swift */; };
+		59CA3D262602447900F04C35 /* MemoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CA3D252602447900F04C35 /* MemoServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,13 +54,14 @@
 		593FCFA92600CAD0003E46FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		593FCFAB2600CAD0003E46FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		593FCFB02600CAD0003E46FB /* TDDSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TDDSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		593FCFB42600CAD0003E46FB /* TDDSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDDSampleTests.swift; sourceTree = "<group>"; };
 		593FCFB62600CAD0003E46FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		593FCFD72600DA43003E46FB /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		593FCFDD2600DC13003E46FB /* MemoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewModel.swift; sourceTree = "<group>"; };
 		593FCFE32600DC28003E46FB /* MemoListNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListNavigator.swift; sourceTree = "<group>"; };
 		593FCFED2600DCE4003E46FB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		593FCFF32600DD00003E46FB /* Model.Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.Memo.swift; sourceTree = "<group>"; };
+		59CA3D212602426800F04C35 /* MemoListViewNavigatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewNavigatorTests.swift; sourceTree = "<group>"; };
+		59CA3D252602447900F04C35 /* MemoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,10 +117,11 @@
 		593FCFB32600CAD0003E46FB /* TDDSampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				593FCFB42600CAD0003E46FB /* TDDSampleTests.swift */,
-				593FCFB62600CAD0003E46FB /* Info.plist */,
+				59CA3D1826023DD100F04C35 /* Resource */,
 				591396F426010B9600B135F8 /* MemoListViewControllerTests.swift */,
 				591396F826010BA900B135F8 /* MemoListViewModelTests.swift */,
+				59CA3D212602426800F04C35 /* MemoListViewNavigatorTests.swift */,
+				59CA3D252602447900F04C35 /* MemoServiceTests.swift */,
 			);
 			path = TDDSampleTests;
 			sourceTree = "<group>";
@@ -136,9 +139,9 @@
 		593FCFDC2600DBFA003E46FB /* Memo */ = {
 			isa = PBXGroup;
 			children = (
+				5913970E26011D7C00B135F8 /* MemoNavigator.swift */,
 				5913970A26011BBA00B135F8 /* MemoViewModel.swift */,
 				593FCFD72600DA43003E46FB /* MemoViewController.swift */,
-				5913970E26011D7C00B135F8 /* MemoNavigator.swift */,
 			);
 			path = Memo;
 			sourceTree = "<group>";
@@ -162,6 +165,14 @@
 				593FCFF32600DD00003E46FB /* Model.Memo.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		59CA3D1826023DD100F04C35 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				593FCFB62600CAD0003E46FB /* Info.plist */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,8 +295,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				591396F526010B9600B135F8 /* MemoListViewControllerTests.swift in Sources */,
-				593FCFB52600CAD0003E46FB /* TDDSampleTests.swift in Sources */,
 				591396F926010BA900B135F8 /* MemoListViewModelTests.swift in Sources */,
+				59CA3D222602426800F04C35 /* MemoListViewNavigatorTests.swift in Sources */,
+				59CA3D262602447900F04C35 /* MemoServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +492,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P84LEHU55L;
-				INFOPLIST_FILE = TDDSampleTests/Info.plist;
+				INFOPLIST_FILE = TDDSampleTests/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -502,7 +514,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P84LEHU55L;
-				INFOPLIST_FILE = TDDSampleTests/Info.plist;
+				INFOPLIST_FILE = TDDSampleTests/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

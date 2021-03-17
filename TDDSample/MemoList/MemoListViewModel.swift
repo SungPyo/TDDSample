@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum MemoListViewModelAction {
-    case refresh
-    case didTapMemo(Model.Memo)
+enum MemoListViewModelAction: Equatable {
     case didTapAddMemo
+    case didTapMemo(Model.Memo)
+    case refresh
 }
 
 protocol MemoListViewModelDelegate: class {
@@ -38,19 +38,12 @@ class MemoListViewModel: MemoListViewModelType {
     private var sections: [[Model.Memo]] = [] {
         didSet { self.delegate?.setSections(sections: self.sections) }
     }
-    weak override var delegate: Delegate? {
-        didSet { self.setInitialState() }
-    }
     
     init(memoService: MemoServiceProtocol) {
         self.memoService = memoService
         super.init()
     }
-    
-    private func setInitialState() {
-        self.delegate?.setSections(sections: self.sections)
-    }
-    
+        
     override func action(_ action: MemoListViewModelType.Action) {
         switch action {
         case .refresh:

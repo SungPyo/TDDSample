@@ -11,13 +11,13 @@
         <!--Memo List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MemoListViewController" customModule="TDDSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemoListViewController" id="BYZ-38-t0r" customClass="MemoListViewController" customModule="TDDSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hRP-gt-x4U">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Zfp-GW-bkX">
@@ -57,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="114.50892857142857"/>
+            <point key="canvasLocation" x="977" y="115"/>
         </scene>
         <!--Memo View Controller-->
         <scene sceneID="eeJ-s4-UWC">
@@ -104,19 +104,16 @@
             </objects>
             <point key="canvasLocation" x="1730" y="115"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation-->
         <scene sceneID="vcV-co-ipe">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JnE-AL-CHc" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Navigation" automaticallyAdjustsScrollViewInsets="NO" id="JnE-AL-CHc" customClass="Navigation" customModule="TDDSample" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NfZ-Ep-Uu0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="mmF-Kg-xYf"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BLD-4T-CCe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
