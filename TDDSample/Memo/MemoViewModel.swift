@@ -15,7 +15,6 @@ enum MemoViewModelAction {
 protocol MemoViewModelDelegate: class {
     func setContent(_ content: String?)
     func setSaveButtonEnabled(_ isEnabled: Bool)
-    func dismiss()
 }
 
 class MemoViewModelType: ViewModel {
@@ -32,6 +31,7 @@ class MemoViewModelType: ViewModel {
 
 class MemoViewModel: MemoViewModelType {
     private let memoService: MemoServiceProtocol
+    weak var coordinator: MemoCoordinator?
     private var memoID: Int?
     private var content: String? {
         didSet {
@@ -48,7 +48,10 @@ class MemoViewModel: MemoViewModelType {
         didSet { self.setInitialState() }
     }
     
-    init(memoService: MemoServiceProtocol, memo: Model.Memo?) {
+    init(memoService: MemoServiceProtocol,
+         memo: Model.Memo?,
+         coordinator: MemoCoordinator?) {
+        self.coordinator = coordinator
         self.memoService = memoService
         self.memoID = memo?.id
         self.content = memo?.content
@@ -73,7 +76,7 @@ class MemoViewModel: MemoViewModelType {
             } else {
                 memoService.addMemo(content: content)
             }
-            self.delegate?.dismiss()
+            coordinator?.dismiss()
         case .inputContent(let content):
             self.content = content
         }

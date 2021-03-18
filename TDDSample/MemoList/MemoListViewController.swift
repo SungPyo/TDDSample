@@ -7,30 +7,14 @@
 
 import UIKit
 
-class Navigation: UINavigationController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initializeViewController()
-    }
-    
-    private func initializeViewController() {
-        let memoListViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoListViewController") as! MemoListViewController
-        memoListViewController.initialize(viewModel: MemoListViewModel(memoService: MemoService.shared),
-                                          navigator: MemoListNavigator(navigation: self))
-        setViewControllers([memoListViewController], animated: true)
-    }
-}
-
 class MemoListViewController: UIViewController {
-    
     @IBOutlet private weak var tableView: UITableView!
+    
     private var sections: [[Model.Memo]] = [] {
         didSet { self.tableView.reloadData() }
     }
     
     private var viewModel: MemoListViewModelType!
-    private var navigator: MemoListNavigatorProtocol!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +25,8 @@ class MemoListViewController: UIViewController {
         self.viewModel.action(.didTapAddMemo)
     }
     
-    func initialize(viewModel: MemoListViewModelType, navigator: MemoListNavigatorProtocol) {
+    func initialize(viewModel: MemoListViewModelType) {
         self.viewModel = viewModel
-        self.navigator = navigator
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,14 +38,6 @@ class MemoListViewController: UIViewController {
 extension MemoListViewController: MemoListViewModelDelegate {
     func setSections(sections: [[Model.Memo]]) {
         self.sections = sections
-    }
-    
-    func navigateToMemo(_ memo: Model.Memo) {
-        navigator.navigateToMemo(memo: memo)
-    }
-    
-    func navigateToCreateMemo() {
-        navigator.navigateToCreateMemo()
     }
 }
 

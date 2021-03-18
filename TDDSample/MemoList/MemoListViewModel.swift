@@ -7,16 +7,15 @@
 
 import Foundation
 
+//뷰에서 발생되는 액션?
 enum MemoListViewModelAction: Equatable {
-    case didTapAddMemo
-    case didTapMemo(Model.Memo)
+    case didTapAddMemo //+버튼 눌렀을때
+    case didTapMemo(Model.Memo) //셀 선택할때
     case refresh
 }
 
 protocol MemoListViewModelDelegate: class {
     func setSections(sections: [[Model.Memo]])
-    func navigateToMemo(_ memo: Model.Memo)
-    func navigateToCreateMemo()
 }
 
 class MemoListViewModelType: ViewModel {
@@ -32,6 +31,8 @@ class MemoListViewModelType: ViewModel {
 
 class MemoListViewModel: MemoListViewModelType {
     private let memoService: MemoServiceProtocol
+    weak var coordinator: MemoListCoordinator?
+    
     private var memos: [Model.Memo] = [] {
         didSet { self.sections = [memos] }
     }
@@ -39,8 +40,10 @@ class MemoListViewModel: MemoListViewModelType {
         didSet { self.delegate?.setSections(sections: self.sections) }
     }
     
-    init(memoService: MemoServiceProtocol) {
+    init(memoService: MemoServiceProtocol,
+         coordinator: MemoListCoordinator) {
         self.memoService = memoService
+        self.coordinator = coordinator
         super.init()
     }
         
@@ -51,9 +54,9 @@ class MemoListViewModel: MemoListViewModelType {
                 self.memos = memos
             }
         case .didTapAddMemo:
-            self.delegate?.navigateToCreateMemo()
+            coordinator?.navigateToMemo(memo: nil)
         case .didTapMemo(let memo):
-            self.delegate?.navigateToMemo(memo)
+            coordinator?.navigateToMemo(memo: memo)
         }
     }
 }

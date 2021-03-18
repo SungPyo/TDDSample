@@ -7,18 +7,21 @@
 
 import UIKit
 
-class MemoViewController: UIViewController {
+protocol TestProtocol {
+    func saveAction(_ sender: UIButton)
+    func didChangeTextField(textField: UITextField)
+}
+
+class MemoViewController: UIViewController, TestProtocol {
     
     @IBOutlet private weak var memoTextField: UITextField!
     @IBOutlet private weak var saveButton: UIButton!
     
-    private var viewModel: MemoViewModel!
-    private var navigator: MemoNavigator!
+    private var viewModel: MemoViewModelType!
     private var memo: Model.Memo?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialize()
         self.viewModel.delegate = self
         configureTitleTextField()
     }
@@ -27,12 +30,11 @@ class MemoViewController: UIViewController {
         self.memo = memo
     }
     
-    func initialize() {
-        viewModel = MemoViewModel(memoService: MemoService.shared, memo: memo)
-        navigator = MemoNavigator(navigation: navigationController!)
+    func initialize(viewModel: MemoViewModelType) {
+        self.viewModel = viewModel
     }
     
-    @IBAction private func saveAction(_ sender: UIButton) {
+    @IBAction func saveAction(_ sender: UIButton) {
         viewModel.action(.didTapSave)
     }
     
@@ -40,7 +42,7 @@ class MemoViewController: UIViewController {
         memoTextField.addTarget(self, action: #selector(didChangeTextField(textField:)), for: .editingChanged)
     }
     
-    @objc private func didChangeTextField(textField: UITextField) {
+    @objc func didChangeTextField(textField: UITextField) {
         viewModel.action(.inputContent(textField.text))
     }
 }
@@ -55,6 +57,6 @@ extension MemoViewController: MemoViewModelDelegate {
     }
     
     func dismiss() {
-        navigator.dismiss()
+//        navigator.dismiss()
     }
 }
