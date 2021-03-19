@@ -31,7 +31,7 @@ class MemoListViewModelType: ViewModel {
 
 class MemoListViewModel: MemoListViewModelType {
     private let memoService: MemoServiceProtocol
-    weak var coordinator: MemoListCoordinator?
+    weak var coordinator: MemoListCoordinatorProtocol?
     
     private var memos: [Model.Memo] = [] {
         didSet { self.sections = [memos] }
@@ -41,7 +41,7 @@ class MemoListViewModel: MemoListViewModelType {
     }
     
     init(memoService: MemoServiceProtocol,
-         coordinator: MemoListCoordinator) {
+         coordinator: MemoListCoordinatorProtocol) {
         self.memoService = memoService
         self.coordinator = coordinator
         super.init()

@@ -55,8 +55,4 @@ extension MemoViewController: MemoViewModelDelegate {
     func setSaveButtonEnabled(_ isEnabled: Bool) {
         saveButton.isEnabled = isEnabled
     }
-    
-    func dismiss() {
-//        navigator.dismiss()
-    }
 }

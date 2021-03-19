@@ -16,10 +16,13 @@ final class MemoServiceStub: MemoServiceProtocol {
     var memosExecutions: [MemosExecution] = []
     var memosCompletion: ((MemosExecutionInput) -> MemosExecutionOutput)?
     func memos(completion: @escaping ([Model.Memo]) -> ()) {
-        let input: MemosExecutionInput = completion
-        let output: MemosExecutionOutput = memosCompletion?(input) ?? ()
-        let execution: MemosExecution = (input, output)
-        self.memosExecutions.append(execution)
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            let input: MemosExecutionInput = completion
+            let output: MemosExecutionOutput = self.memosCompletion?(input) ?? ()
+            let execution: MemosExecution = (input, output)
+            self.memosExecutions.append(execution)
+        }
     }
 
     typealias AddMemoExecutionInput = String

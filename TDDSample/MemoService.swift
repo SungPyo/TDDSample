@@ -22,8 +22,13 @@ final class MemoService: MemoServiceProtocol {
     private init() {}
     
     func memos(completion: @escaping ([Model.Memo]) -> ()) {
-        completion(datas)
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            sleep(3)
+            completion(self.datas)
+        }
     }
+    
     func addMemo(content: String) {
         lastMemoID += 1
         let memo = Model.Memo(id: lastMemoID, content: content)

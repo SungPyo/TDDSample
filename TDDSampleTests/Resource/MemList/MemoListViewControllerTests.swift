@@ -23,9 +23,8 @@ class MemoListViewControllerTests: XCTestCase {
         let navigation = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainContainer") as! UINavigationController
         navigation.loadViewIfNeeded()
         viewController = navigation.viewControllers.first as? MemoListViewController
-        coordinator = MemoListViewCoordinatorStub(navigationController: viewController.navigationController!)
+        coordinator = MemoListViewCoordinatorStub()
         viewController.initialize(viewModel: viewModel)
-        
         viewController.loadViewIfNeeded()
     }
     
@@ -36,48 +35,29 @@ class MemoListViewControllerTests: XCTestCase {
         XCTAssertEqual(viewModel.actionExecutions.count, 1)
     }
 
-//    func test_리스트를_표시_할_수_있습니다() {
-//        let mi = Mirror(reflecting: viewController!)
-//        let tableView = mi.children.first(where: {$0.label == "tableView"})?.value as! UITableView //private Variable
-//
-//        let memo = Model.Memo(id: 1, content: "12345")
-//        viewModel.delegate?.setSections(sections: [[memo]])
-//
-//        let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(item: 0, section: 0))
-//        XCTAssertTrue(cell?.textLabel?.text == "12345")
-//    }
+    func test_리스트를_표시_할_수_있습니다() {
+        //given
+        let mi = Mirror(reflecting: viewController!)
+        let tableView = mi.children.first(where: {$0.label == "tableView"})?.value as! UITableView //private Variable
+        let memo = Model.Memo(id: 1, content: "12345")
+        
+        //when
+        viewModel.delegate?.setSections(sections: [[memo]])
 
-    func test_메모_생성_화면으로_이동_할_수_있습니다() {
-//        //액션 발행시 navigator입력이 올바르게 됐는지 테스트
-//        //when
-//        coordinator.navigateToMemo(memo: nil)
-//
-//        //then
-//        XCTAssertEqual(coordinator.navigateToMemoExecutions.count, 1)
+        //then
+        let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(item: 0, section: 0))
+        XCTAssertTrue(cell?.textLabel?.text == "12345")
     }
-//
-//    func test_메모_수정_화면으로_이동_할_수_있습니다() {
-//        //액션 발행시 navigator입력이 올바르게 됐는지 테스트
-//        //given
-//        let memo = Model.Memo(id: 123, content: "456789")
-//
-//        //when
-////        viewModel.delegate?.navigateToMemo(memo)
-//
-//        //then
-//        XCTAssertEqual(coordinator.navigateToMemoExecutions.count, 1)
-//        XCTAssertEqual(coordinator.navigateToMemoExecutions[0].0, memo)
-//    }
-//
-//    func test_viewWillAppear가_호출되면_refresh액션이_발행됩니다() {
-//        //given
-//        let refresh = MemoListViewModelType.Action.refresh
-//
-//        //when
-//        viewController.viewWillAppear(true)
-//
-//        //then
-////        let refreshExecutions = viewModel.actionExecutions[0].0
-////        XCTAssertEqual(refresh, refreshExecutions)
-//    }
+
+    func test_viewWillAppear가_호출되면_refresh액션이_발행됩니다() {
+        //given
+        let refresh = MemoListViewModelType.Action.refresh
+
+        //when
+        viewController.viewWillAppear(true)
+
+        //then
+        let refreshExecutions = viewModel.actionExecutions[0].0
+        XCTAssertEqual(refresh, refreshExecutions)
+    }
 }

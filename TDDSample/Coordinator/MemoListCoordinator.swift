@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol MemoListCoordinatorProtocol: Coordinator {
+protocol MemoListCoordinatorProtocol: Coordinator, AnyObject {
     func navigateToMemo(memo: Model.Memo?)
 }
 

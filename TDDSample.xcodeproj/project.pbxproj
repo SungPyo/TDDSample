@@ -207,8 +207,8 @@
 		59CA3D1826023DD100F04C35 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				5908F6572603A24A005D0995 /* Memo */,
 				5908F6562603A242005D0995 /* MemList */,
+				5908F6572603A24A005D0995 /* Memo */,
 				593FCFB62600CAD0003E46FB /* Info.plist */,
 			);
 			path = Resource;
