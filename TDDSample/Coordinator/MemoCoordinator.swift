@@ -12,7 +12,7 @@ protocol MemoCoordinatorProtocol: Coordinator {
 }
 
 final class MemoCoordinator: MemoCoordinatorProtocol {
-    var parentCoordinator: MemoListCoordinator?
+    var parentCoordinator: Coordinator?
     var childCoordinator: [Coordinator] = []
     var navigationController: UINavigationController
     var memo: Model.Memo?

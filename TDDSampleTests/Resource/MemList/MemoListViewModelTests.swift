@@ -94,18 +94,4 @@ final class MemoListViewModelDelegateStub: MemoListViewModelDelegate {
     }
 }
 
-final class MemoListViewCoordinatorStub: MemoListCoordinatorProtocol {
-    var childCoordinator: [Coordinator] = []
-    func start() {}
-    
-    typealias NavigateToMemoExecutionInput = Model.Memo?
-    typealias NavigateToMemoExecutionOutput = ()
-    typealias NavigateToMemoExecution = (NavigateToMemoExecutionInput, NavigateToMemoExecutionOutput)
-    var navigateToMemoExecutions: [NavigateToMemoExecution] = []
-    func navigateToMemo(memo: Model.Memo?) {
-        let input: NavigateToMemoExecutionInput = memo
-        let output: NavigateToMemoExecutionOutput = ()
-        let execution: NavigateToMemoExecution = (input,output)
-        self.navigateToMemoExecutions.append(execution)
-    }
-}
+

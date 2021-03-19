@@ -31,8 +31,8 @@ class MemoViewModelType: ViewModel {
 
 class MemoViewModel: MemoViewModelType {
     private let memoService: MemoServiceProtocol
-    weak var coordinator: MemoCoordinator?
-    private var memoID: Int?
+    weak var coordinator: MemoCoordinatorProtocol?
+    private var memo: Model.Memo?
     private var content: String? {
         didSet {
             self.delegate?.setContent(self.content)
@@ -44,22 +44,23 @@ class MemoViewModel: MemoViewModelType {
         didSet { self.delegate?.setSaveButtonEnabled(self.isSaveButtonEnabled) }
     }
     
-    weak override var delegate: Delegate? {
-        didSet { self.setInitialState() }
-    }
+//    weak override var delegate: Delegate?
+//    {
+//        didSet { self.setInitialState() }
+//    }
     
     init(memoService: MemoServiceProtocol,
          memo: Model.Memo?,
-         coordinator: MemoCoordinator?) {
+         coordinator: MemoCoordinatorProtocol?) {
         self.coordinator = coordinator
         self.memoService = memoService
-        self.memoID = memo?.id
+        self.memo = memo
         self.content = memo?.content
         super.init(memo: memo)
     }
     
     private func setInitialState() {
-        self.delegate?.setContent(self.content)
+//        self.delegate?.setContent(self.content)
         self.updateSaveButtonEnabled()
     }
     
@@ -70,11 +71,11 @@ class MemoViewModel: MemoViewModelType {
     override func action(_ action: MemoViewModelType.Action) {
         switch action {
         case .didTapSave:
-            guard let content = self.content else { return }
-            if let memoID = self.memoID {
-                memoService.updateMemo(memo: Model.Memo(id: memoID, content: content))
+//            guard let content = self.content else { return }
+            if let memo = self.memo {
+                memoService.updateMemo(memo: Model.Memo(id: memo.id, content: memo.content))
             } else {
-                memoService.addMemo(content: content)
+                memoService.addMemo(content: (memo?.content) ?? "")
             }
             coordinator?.dismiss()
         case .inputContent(let content):
