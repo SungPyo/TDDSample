@@ -10,7 +10,7 @@ import XCTest
 
 class MemoViewModelTests: XCTestCase {
     var memoService: MemoServiceStub!
-    var viewModel: MemoViewModel! //Test
+    var viewModel: MemoDetailViewModel! //Test
     var delegateStub: MemoViewModelDelegateStub!
     var coordinator: MemoViewCoordinatorStub!
 
@@ -24,7 +24,7 @@ class MemoViewModelTests: XCTestCase {
     func initialize(memoStub: Model.Memo?) {
         memoService = MemoServiceStub()
         coordinator = MemoViewCoordinatorStub()
-        viewModel = MemoViewModel(memoService: memoService,
+        viewModel = MemoDetailViewModel(memoService: memoService,
                                   memo: memoStub,
                                   coordinator: coordinator)
         delegateStub = MemoViewModelDelegateStub()
@@ -46,7 +46,7 @@ class MemoViewModelTests: XCTestCase {
         XCTAssertEqual(memoService.updateMemoExecutions.count, 1)
 
         //given
-        viewModel = MemoViewModel(memoService: memoService,
+        viewModel = MemoDetailViewModel(memoService: memoService,
                                   memo: nil,
                                   coordinator: coordinator)
         //when

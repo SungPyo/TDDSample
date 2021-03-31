@@ -12,7 +12,7 @@ protocol TestProtocol {
     func didChangeTextField(textField: UITextField)
 }
 
-class MemoViewController: UIViewController, TestProtocol {
+class MemoDetailViewController: UIViewController, TestProtocol {
     
     @IBOutlet private weak var memoTextField: UITextField!
     @IBOutlet private weak var saveButton: UIButton!
@@ -47,7 +47,7 @@ class MemoViewController: UIViewController, TestProtocol {
     }
 }
 
-extension MemoViewController: MemoViewModelDelegate {
+extension MemoDetailViewController: MemoViewModelDelegate {
     func setContent(_ content: String?) {
         memoTextField.text = content
     }

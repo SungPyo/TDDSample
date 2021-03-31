@@ -14,7 +14,7 @@ class MemoViewControllerTests: XCTestCase {
     
     var memoViewModel: MemoViewModelStub!
     var memoViewCoordinator: MemoViewCoordinatorStub!
-    var memoViewController: MemoViewController! //test
+    var memoViewController: MemoDetailViewController! //test
 
     override func setUp() {
         super.setUp()
@@ -24,8 +24,7 @@ class MemoViewControllerTests: XCTestCase {
     private func initialize() {
         memoViewModel = MemoViewModelStub(memo: nil)
         memoViewCoordinator = MemoViewCoordinatorStub()
-        
-        memoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoViewController") as? MemoViewController
+        memoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoViewController") as? MemoDetailViewController
         memoViewController.initialize(viewModel: memoViewModel)
         memoViewController.loadViewIfNeeded()
     }

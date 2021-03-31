@@ -29,7 +29,7 @@ class MemoViewModelType: ViewModel {
     func action(_ action: Action) { }
 }
 
-class MemoViewModel: MemoViewModelType {
+class MemoDetailViewModel: MemoViewModelType {
     private let memoService: MemoServiceProtocol
     weak var coordinator: MemoCoordinatorProtocol?
     private var memo: Model.Memo?
@@ -44,11 +44,6 @@ class MemoViewModel: MemoViewModelType {
         didSet { self.delegate?.setSaveButtonEnabled(self.isSaveButtonEnabled) }
     }
     
-//    weak override var delegate: Delegate?
-//    {
-//        didSet { self.setInitialState() }
-//    }
-    
     init(memoService: MemoServiceProtocol,
          memo: Model.Memo?,
          coordinator: MemoCoordinatorProtocol?) {
@@ -60,7 +55,6 @@ class MemoViewModel: MemoViewModelType {
     }
     
     private func setInitialState() {
-//        self.delegate?.setContent(self.content)
         self.updateSaveButtonEnabled()
     }
     
@@ -71,11 +65,10 @@ class MemoViewModel: MemoViewModelType {
     override func action(_ action: MemoViewModelType.Action) {
         switch action {
         case .didTapSave:
-//            guard let content = self.content else { return }
             if let memo = self.memo {
                 memoService.updateMemo(memo: Model.Memo(id: memo.id, content: memo.content))
             } else {
-                memoService.addMemo(content: (memo?.content) ?? "")
+                memoService.addMemo(content: self.content ?? "")
             }
             coordinator?.dismiss()
         case .inputContent(let content):

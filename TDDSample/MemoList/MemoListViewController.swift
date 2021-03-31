@@ -11,7 +11,11 @@ class MemoListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     private var sections: [[Model.Memo]] = [] {
-        didSet { self.tableView.reloadData() }
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     private var viewModel: MemoListViewModelType!

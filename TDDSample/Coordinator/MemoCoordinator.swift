@@ -24,12 +24,12 @@ final class MemoCoordinator: MemoCoordinatorProtocol {
     }
     
     func start() {
-        let memoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoViewController") as! MemoViewController
-        let memoViewModel = MemoViewModel(memoService: MemoService.shared,
+        let memoDetailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoDetailViewController") as! MemoDetailViewController
+        let memoDetailViewModel = MemoDetailViewModel(memoService: MemoService.shared,
                                           memo: memo,
                                           coordinator: self)
-        memoViewController.initialize(viewModel: memoViewModel)
-        navigationController.pushViewController(memoViewController, animated: true)
+        memoDetailViewController.initialize(viewModel: memoDetailViewModel)
+        navigationController.pushViewController(memoDetailViewController, animated: true)
     }
     
     func dismiss() {

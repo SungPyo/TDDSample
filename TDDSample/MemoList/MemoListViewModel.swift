@@ -7,7 +7,7 @@
 
 import Foundation
 
-//뷰에서 발생되는 액션?
+
 enum MemoListViewModelAction: Equatable {
     case didTapAddMemo //+버튼 눌렀을때
     case didTapMemo(Model.Memo) //셀 선택할때

@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="403" y="115"/>
         </scene>
-        <!--Memo View Controller-->
+        <!--Memo Detail View Controller-->
         <scene sceneID="eeJ-s4-UWC">
             <objects>
-                <viewController storyboardIdentifier="MemoViewController" id="GAL-Pa-AcR" customClass="MemoViewController" customModule="TDDSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemoDetailViewController" id="GAL-Pa-AcR" customClass="MemoDetailViewController" customModule="TDDSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e3T-qt-D9f">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
